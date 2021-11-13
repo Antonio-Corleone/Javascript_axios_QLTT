@@ -1,0 +1,39 @@
+.people__card{
+  background-color: rgba(255, 255, 255, 1);
+  text-align: center;
+  border-radius: $bd-1;
+  padding-bottom: $pd-6;
+  transition: all .3s ease;
+  .card-img{
+    overflow: hidden;
+    border-radius: $bd-1 $bd-1 0 0;
+    img{
+      width: 100%;
+      display: block;
+      overflow: hidden;
+      transition: all 1s ease;
+      &:hover{
+        transform: scale(1.1);
+      }
+    }
+  }
+  .card-text{
+    margin-top: $mr-3 + 5;
+    span {
+      @include styleText($color-pink, $fs-1 + 0.25, $fw-3);
+      margin-bottom: $mr-1 + 1;
+    }
+    h2{
+      @include styleText($color-black-1, $fs-5 + 0.25, $fw-4);
+      margin-bottom: $mr-3;
+    }
+    p {
+      @include styleText($color-black-2, $fs-3 - 1, $fw-2);
+      margin: 0;
+      padding: 0 $pd-2;
+    };
+  }
+  &:hover{
+    box-shadow: $bs-1;
+  }
+}

@@ -1,0 +1,112 @@
+.findCourse{
+  padding: $pd-8 0;
+  position: relative;
+  .bot-cover-img{
+    img{
+      position: absolute;
+      bottom: 0;
+      display: block;
+      width: 100%;
+    }
+  }
+  .findCourse__content{
+    width: 80%;
+    margin: auto;
+    .findCourse__left{
+      img{
+        display: block;
+        width: 100%;
+      }
+    }
+    .findCourse__right{
+      h2{
+        @include styleText($color-black-1,$fs-6 + 0.5, $fw-4);
+        margin-bottom: $mr-5;
+      }
+      .findCourse__form{
+        background-color: $color-white;
+        box-shadow: $bs-1;
+        border-radius: $bd-1;
+        padding: $pd-2;
+        #name, #email, #language, #mytxt{
+          & i{
+            color: $color-pink;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            transform: translate(-50%, -50%);
+          }
+        }
+        #name, #email{
+          position: relative;
+          & input{
+            transition: all .5s ease;
+            @include styleInput($pd-1 - 3,$pd-1 - 3 ,$pd-1 - 3,$pd-6 + 2,1px solid rgba(0,0,0,.1),$bd-2);
+            &:focus{
+              border: 1px solid rgba(0,0,0,.3)
+            }
+          }
+        }
+        #language{
+          & select{
+            appearance: none;
+            position: relative;
+            opacity: 0.8;
+            transition: all .5s ease;
+            @include styleInput($pd-1 - 3,$pd-1 - 3 ,$pd-1 - 3,$pd-5 + 2,1px solid rgba(0,0,0,.1),$bd-2);
+            &:focus{
+              border: 1px solid rgba(0,0,0,.3)
+            }
+          }
+          &::after{
+            content: '\f078';
+            font-family: 'Font Awesome 5 Free';
+            font-size: $fs-1;
+            position: absolute;
+            right: 7%;
+            top: 36%;
+            color: $color-pink;
+            opacity: 0.5;
+          }
+        }
+        #mytxt{
+          & textarea{
+            transition: all .5s ease;
+            @include styleInput($pd-1 - 3,$pd-1 - 3 ,$pd-1 - 3,$pd-6 + 2,1px solid rgba(0,0,0,.1),$bd-1);
+            height: 100px;
+            &:focus{
+              border: 1px solid rgba(0,0,0,.3)
+            }
+          }
+        }
+      }
+    }
+  }
+}
+//responsive
+@include responsive("extra-large-down"){
+.findCourse{
+  .findCourse__content{
+    .findCourse__right{
+      h2{
+        font-size: $fs-6 - 5;
+        margin-bottom: $mr-4 - 5;
+      }
+    }
+  }
+}
+}
+@include responsive("large-down"){
+  .findCourse{
+    .findCourse__content{
+      .findCourse__right{
+        h2{
+          font-size: $fs-6 - 5;
+          margin-bottom: $mr-3;
+          margin-top: $mr-4;
+          padding-left: $pd-2;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,97 @@
+.contact {
+  padding: $pd-9 0;
+  position: relative;
+  background-image: url(../img/footer_background.jpg);
+  background-size: cover;
+  background-position: bottom;
+  .container {
+    padding-bottom: $pd-9;
+  }
+  .contact__content {
+    .contact__item {
+      h2 {
+        @include styleText($color-white, $fs-5 + 0.5, $fw-5);
+        margin-bottom: $mr-4;
+      }
+      .contact__text {
+        p {
+          @include styleText($color-white, $fs-2 + 0.5, $fw-2);
+        }
+        span {
+          padding-right: $mr-2 + 0.8;
+        }
+        li {
+          list-style: none;
+          cursor: pointer;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+          a {
+            text-decoration: none;
+            @include styleText($color-white, $fs-2 + 0.5, $fw-2);
+            transition: all .3s ease;
+          }
+          &:hover a{
+            color: rgba(255, 255, 255, 0.8);
+          }
+        }
+      }
+      .contact__icons {
+        a {
+          padding-right: $pd-1;
+          color: $color-white;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          &:hover {
+            color: $color-black-1;
+          }
+        }
+      }
+      .subcribe{
+        input{
+          text-align: center;
+          @include styleInput($pd-1, $pd-1, $pd-1, $pd-1, 1px solid rgba(255, 255, 255, 0.1), $bd-2);
+          @include styleText($color-white, $fs-2, $fw-2);
+          transition: all .5s ease;
+        }
+        ::placeholder{
+          color: $color-white;
+        }
+        :focus{
+          border: 1px solid rgba(255,255,255,1)
+        }
+      }
+    }
+  }
+}
+//responsive
+@include responsive("small"){
+.contact{
+  .contact__content{
+    .contact__item{
+      h2{
+        font-size: $fs-5 - 1;
+        font-weight: $fw-4;
+      }
+      .contact__text {
+        p{
+          font-size: $fs-2 - 0.5;
+        }
+        li{
+          a{
+            font-size: $fs-2 - 0.5;
+          }
+        }
+      }
+      .subcribe{
+        input{
+          font-size: $fs-2 - 0.5
+        }
+        #btn__contact{
+          a{
+            font-size: $fs-1;
+          }
+        }
+      }
+    }
+  }
+}
+}

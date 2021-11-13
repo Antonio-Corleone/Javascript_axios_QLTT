@@ -1,0 +1,12 @@
+.people{
+  background-color: $color-pink-2;
+  position: relative;
+  .bot-cover-img{
+    img{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      display: block;
+    }
+  }
+}

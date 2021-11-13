@@ -1,0 +1,52 @@
+//Text
+@mixin styleText($color, $fs, $fw) {
+  color: $color;
+  font-size: $fs;
+  font-weight: $fw;
+}
+
+//Buttons
+@mixin styleButton($bg, $pd-y, $pd-x, $bd, $radius) {
+  background: $bg;
+  padding: $pd-y $pd-x;
+  border: $bd;
+  border-radius: $radius;
+  cursor: pointer;
+  z-index: 10;
+}
+@mixin btnAfter($bg, $radius) {
+  background-color: $bg;
+  border-radius: $radius;
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transform: scale(0);
+  z-index: -1;
+  transition: all .3s ease;
+}
+//Input
+@mixin styleInput($p-t, $p-r, $p-b, $p-l, $bd, $radius) {
+  outline: none;
+  width: 100%;
+  background-color: transparent;
+  padding: $p-t $p-r $p-b $p-l;
+  border: $bd;
+  border-radius: $radius;
+}
+//Media query
+@mixin responsive($screen) {
+  @if (map-has-key($map: $breakpoints, $key: $screen)) {
+    $value: map-get(
+      $map: $breakpoints,
+      $key: $screen,
+    );
+    @media screen and (max-width: $value) {
+      @content;
+    }
+  } @else {
+    @warn "`{$screen}` isn't in breakpoint";
+  }
+}

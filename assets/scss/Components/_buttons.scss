@@ -1,0 +1,59 @@
+#btn__phone {
+  flex-basis: auto;
+  position: relative;
+  @include styleButton($color-pink, $pd-1 - 2.5, $pd-2 + 0.25, 1px solid $color-pink, $bd-2);
+  margin: $mr-1 + 1;
+  transition: all 0.3s ease;
+  #myBtn {
+    @include styleText($color-white, $fs-2 + 0.5, $fw-3);
+    text-decoration: none;
+    line-height: 1;
+  }
+  &::after {
+    @include btnAfter($color-white, $bd-2);
+  }
+  &:hover #myBtn {
+    color: $color-pink;
+  }
+  &:hover::after {
+    transform: scale(1);
+  }
+}
+#btn__form{
+  position: relative;
+  @include styleButton($color-pink, $pd-1 - 2.5, $pd-2 + 0.25, 1px solid $color-pink, $bd-2);
+  margin: $mr-4 0 $mr-5;
+  width: 40%;
+  text-align: center;
+  a{
+    color: $color-white;
+    text-decoration: none;
+  }
+  &::after{
+    @include btnAfter($color-white, $bd-2);
+  }
+  &:hover a{
+    color: $color-pink;
+  }
+  &:hover::after{
+    transform: scale(1);
+  }
+}
+#btn__contact{
+  position: relative;
+  @include styleButton($color-white,$pd-1 - 2.5, $pd-2 + 0.25, 1px solid $color-white, $bd-2);
+  text-align: center;
+  a{
+    @include styleText($color-black-2, $fs-2, $fw-3);
+    text-decoration: none;
+  }
+  &::after{
+    @include btnAfter($color-pink, $bd-2);
+  }
+  &:hover a{
+    color: $color-white;
+  }
+  &:hover::after{
+    transform: scale(1);
+  }
+}

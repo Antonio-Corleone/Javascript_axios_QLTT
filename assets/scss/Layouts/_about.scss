@@ -1,0 +1,66 @@
+.about{
+	position: relative;
+	.top-cover-img, .bot-cover-img{
+		position: absolute;
+		width: 100%;
+		left: 0;
+		img{
+			width: 100%;
+			display: block;
+		}
+	}
+	.bot-cover-img{
+		bottom: 0;
+	}
+	.about__content{
+		padding: $pd-8 0;
+		h4{
+			@include styleText($color-pink, $fs-4 + 0.5, $fw-3);
+			margin-bottom: $mr-1 + 1;
+		}
+		h1{
+			@include styleText($color-black-1, $fs-7, $fw-4);
+		}
+		img{
+			display: block;
+			width: 100%;
+		}
+	}
+}
+
+//responsive
+@include responsive("extra-large-down"){
+	.about{
+		.about__content{
+			.about__text{
+				h1{
+					font-size: $fs-6 + 10.25;
+				}
+				h4{
+					font-size: $fs-3;
+				}
+			}
+		}
+	}
+}
+@include responsive("large-down"){
+	.about{
+		.about__content{
+			img{
+				width: 61%;
+			}
+			.about__text{
+				padding-top: $pd-8;
+			}
+		}
+	}
+}
+@include responsive("medium-down"){
+	.about{
+		.about__content{
+			img{
+				width: 100%;
+			}
+		}
+	}
+}

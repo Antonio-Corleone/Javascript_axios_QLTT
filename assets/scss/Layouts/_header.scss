@@ -1,0 +1,112 @@
+#header {
+  position: fixed;
+  width: 100%;
+  backdrop-filter: blur(5px);
+  transition: all .5s ease;
+  z-index: 1000;
+  .navbar {
+    padding-top: 0;
+    .navbar-brand {
+      padding-top: 0;
+      img {
+        width: 90%;
+      }
+    }
+    .nav-item {
+      padding-right: $pd-7;
+      cursor: pointer;
+      .nav-link {
+        position: relative;
+        @include styleText($color-black-2, $fs-2, $fw-3);
+        padding: $pd-3 + 5 0;
+        &::after {
+          content: "";
+          position: absolute;
+          left: 30%;
+          width: $pd-1;
+          height: $pd-1;
+          border-radius: $bd-1;
+          background-color: $color-pink;
+          transform: scale(0);
+          margin-top: $mr-5 - 5;
+          transition: all 0.3s ease;
+        }
+      }
+      &:hover .nav-link{
+        color: $color-pink;
+        &::after{
+          transform: scale(0.8);
+        }
+      }
+    }
+    .active {
+      .nav-link {
+        &::after {
+          transform: scale(0.6);
+        }
+      }
+    }
+    #menu {
+      display: flex;
+      align-items: center;
+      .menu__icons {
+        a {
+          margin-left: $mr-2 + 1.7;
+          text-decoration: none;
+          color: $color-black-1;
+          &:hover {
+            color: $color-pink;
+          }
+        }
+      }
+    }
+    //Restyle navbar collapsed
+    .show{
+      overflow-y: auto;
+      max-height: 65vh;
+      padding-bottom: $pd-1;
+      .nav-item{
+        padding: 0;
+        .nav-link{
+          padding: $pd-1;
+          &::after{
+            background-color: transparent;
+            content: '\f078';
+            font-family: 'Font Awesome 5 Free';
+            font-size: $fs-1;
+            position: absolute;
+            left: 20%;
+            margin-top: 0;
+            color: $color-pink;
+          }
+        }
+      }
+      #menu{
+        flex-direction: column;
+        align-items: flex-start;
+        #btn__phone{
+          margin-left: 0;
+          margin-bottom: $mr-3;
+        }
+        #menu__icons{
+          margin-left: 0;
+          margin-right: $mr-2 + 1.7;
+        }
+      }
+    }
+  }
+}
+//responsive
+@include responsive("extra-large-down"){
+  #header{
+    background-color: $color-white;
+    .navbar{
+      justify-content: flex-start;
+      .navbar-brand {
+        img {
+          width: 55%;
+        }
+      }
+    }
+  }
+}
