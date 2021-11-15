@@ -101,6 +101,7 @@
                 class="btn btn-success"
                 data-toggle="modal"
                 data-target="#myModal"
+                onclick="addUserModal()"
               >
                 <i class="fa fa-plus mr-1"></i>
                 Thêm Mới
@@ -129,7 +130,7 @@
           <div class="clear-fix"></div>
           <div class="tblNguoiDung" id="tblNguoiDung">
             <!-- BEGIN TABLE NGƯỜI DÙNG -->
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="userList">
               <thead>
                 <th>STT</th>
                 <th>Tài khoản</th>
@@ -239,7 +240,6 @@
               <div class="form-group">
                 <label>Mô tả</label>
                 <textarea name="" id="MoTa" class="form-control" placeholder="Nhập vào mô tả"></textarea>
-               
               </div>
             </div>
             <!-- Modal footer -->
@@ -275,5 +275,15 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <!-- Axios -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"
+      integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="../services/getListUserApi.js"></script>
+    <script src="../models/Users.js"></script>
+    <script src="../controllers/index.js"></script>
   </body>
 </html>

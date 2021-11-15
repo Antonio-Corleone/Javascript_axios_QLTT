@@ -3,7 +3,8 @@
   position: relative;
   background-image: url(../img/footer_background.jpg);
   background-size: cover;
-  background-position: bottom;
+  background-position: center;
+  background-repeat: no-repeat;
   .container {
     padding-bottom: $pd-9;
   }
