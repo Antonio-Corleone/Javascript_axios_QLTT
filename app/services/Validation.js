@@ -70,4 +70,19 @@ function Validation() {
     document.getElementById(spanID).style.display = 'block';
     return false;
   }
+  //Kiểm tra account trùng
+  this.checkID = function (value, message, spanID, data) {
+    var isExist = false;
+    isExist = data.some(function (user) {
+      return value == user.taiKhoan;
+    });
+    if (isExist) {
+      document.getElementById(spanID).innerHTML = message;
+      document.getElementById(spanID).style.display = 'block';
+      return false;
+    }
+    document.getElementById(spanID).innerHTML = '';
+    document.getElementById(spanID).style.display = 'none';
+    return true;
+  }
 }

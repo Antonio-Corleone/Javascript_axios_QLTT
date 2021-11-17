@@ -9,7 +9,6 @@ function getELE(id) {
 function getUserInfo() {
   service.getListUser()
     .then(function (result) {
-      // console.log(result.data)
       renderData(result.data);
     })
     .catch(function (error) {
@@ -35,7 +34,6 @@ function renderData(data) {
       </td>
     </tr>`
   });
-  // console.log(htmls);
   getELE("tblDanhSachNguoiDung").innerHTML = htmls;
 }
 getUserInfo();
@@ -72,29 +70,34 @@ function addListUser() {
   let moTa = getELE("MoTa").value;
   let hinhAnh = getELE("HinhAnh").value;
   // Validation
-  let isValid = true;
-  //Kt taiKhoan rỗng và bị trùng
-  isValid &= validation.checkEmpty(taiKhoan, 'Tài khoản không được để trống', 'tbTK');
-  isValid &= validation.checkEmpty(hoTen, 'Họ tên không được để trống', 'tbTen') && validation.checkName(hoTen, 'Tên sai định dạng', 'tbTen');
-  isValid &= validation.checkEmpty(matKhau, 'Mật khẩu không được để trống', 'tbMK') && validation.checkPass(matKhau, 'Mật khẩu sai định dạng', 'tbMK');
-  isValid &= validation.checkEmpty(email, 'Email không được để trống', 'tbEmail') && validation.checkEmail(email, 'Email sai định dạng', 'tbEmail');
-  isValid &= validation.checkEmpty(hinhAnh, 'Tên hình không được để trống', 'tbHinh');
-  isValid &= validation.checkSelected('loaiNguoiDung', 'Phải chọn loại người dùng', 'tbLoaiND');
-  isValid &= validation.checkSelected('loaiNgonNgu', 'Phải chọn loại ngôn ngữ', 'tbloaiNN');
-  isValid &= validation.checkEmpty(moTa, 'Mô tả không được để trống', 'tbMT') && validation.checkDescription(moTa, 'Mô tả không được nhiều hơn 60 ký tự', 'tbMT');
-  if (isValid) {
-    let user = new User('', taiKhoan, hoTen, matKhau, email, loaiND, ngonNgu, moTa, hinhAnh);
-    service.addUserApi(user)
-    .then(function (result) {
-      console.log(result)
-      document.getElementsByClassName("close")[0].click();
-      alert('Thêm thành công');
-      getUserInfo();
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
-  }
+  service.getListUser()
+  .then(function (result) {
+    let isValid = true;
+    isValid &= validation.checkEmpty(taiKhoan, 'Tài khoản không được để trống', 'tbTK') && validation.checkID(taiKhoan, 'Tài khoản không được trùng', 'tbTK', result.data);
+    isValid &= validation.checkEmpty(hoTen, 'Họ tên không được để trống', 'tbTen') && validation.checkName(hoTen, 'Tên sai định dạng', 'tbTen');
+    isValid &= validation.checkEmpty(matKhau, 'Mật khẩu không được để trống', 'tbMK') && validation.checkPass(matKhau, 'Mật khẩu sai định dạng', 'tbMK');
+    isValid &= validation.checkEmpty(email, 'Email không được để trống', 'tbEmail') && validation.checkEmail(email, 'Email sai định dạng', 'tbEmail');
+    isValid &= validation.checkEmpty(hinhAnh, 'Tên hình không được để trống', 'tbHinh');
+    isValid &= validation.checkSelected('loaiNguoiDung', 'Phải chọn loại người dùng', 'tbLoaiND');
+    isValid &= validation.checkSelected('loaiNgonNgu', 'Phải chọn loại ngôn ngữ', 'tbloaiNN');
+    isValid &= validation.checkEmpty(moTa, 'Mô tả không được để trống', 'tbMT') && validation.checkDescription(moTa, 'Mô tả không được nhiều hơn 60 ký tự', 'tbMT');
+    if (isValid) {
+      let user = new User('', taiKhoan, hoTen, matKhau, email, loaiND, ngonNgu, moTa, hinhAnh);
+      service.addUserApi(user)
+      .then(function (result) {
+        console.log(result)
+        document.getElementsByClassName("close")[0].click();
+        alert('Thêm thành công');
+        getUserInfo();
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
+    }
+  })
+  .catch(function (error) {
+    console.log(error)
+  })
 }
 
 //Xem thông tin User
@@ -153,7 +156,28 @@ function updateListUser(id) {
       })
   }
 }
-
+//Tìm kiếm user theo tài khoản
+function searchUser(tuKhoa) {
+  service.getListUser()
+  .then(function (result) {
+    let mangTK = [];
+    let tk = tuKhoa.trim().toLowerCase();
+    result.data.map(function(user){
+      let tenTK = user.taiKhoan.trim().toLowerCase();
+      if (tenTK.includes(tk)){
+        mangTK.push(user);
+      }
+    })
+    renderData(mangTK);
+  })
+  .catch(function (error) {
+    console.log(error)
+  })
+}
+getELE("txtSearch").onkeyup = function(){
+  var tuKhoa = getELE("txtSearch").value;
+  searchUser(tuKhoa);
+}
 //Reset span thông báo
 function resetSpan() {
   var x = document.querySelectorAll(".sp-thongbao");
